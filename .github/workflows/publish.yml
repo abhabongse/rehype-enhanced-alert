@@ -11,6 +11,12 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: "^10.13.1"
+          run_install: false
       - name: Publish package
         run: pnpm dlx jsr publish
