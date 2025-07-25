@@ -1,10 +1,5 @@
 {
-  "name": "rehype-enhanced-alert",
-  "version": "0.0.0",
-  "description": "A rehype plugin enabling GitHub-style alert boxes in Markdown with enhanced features and customization.",
-  "keywords": [],
-  "author": "Abhabongse Janthong <6845502+abhabongse@users.noreply.github.com>",
-  "license": "Apache-2.0",
+  "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm"
   }
