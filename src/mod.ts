@@ -16,7 +16,9 @@ import type { Options } from "./types.ts";
 export const rehypeEnhancedAlert: Plugin<[Options?], hast.Root> = builder();
 
 /**
- *  Default alert types supported by the plugin, which are:
+ *  Default alert types supported by the plugin.
+ *
+ *  These default alert types are:
  *
  *  ```typescript
  *  export const DEFAULT_TYPES = ["note", "tip", "important", "warning", "caution"];

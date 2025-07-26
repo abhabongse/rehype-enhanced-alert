@@ -113,7 +113,7 @@ Please refer to the [Advanced Features](#advanced-features) section below.
 Head over to the [package home page on JSR][jsr-package-overview]
 on how to install the plugin package.
 
-```shell
+```sh
 # Install with npm 
 npx jsr add @abhabongse/rehype-enhanced-alert
 
@@ -380,9 +380,9 @@ Head over to the [JSR package documentation][package-api-reference] for the full
 
 [package-api-reference]: https://jsr.io/@abhabongse/rehype-enhanced-alert/doc
 
-[plugin-options]: https://jsr.io/@abhabongse/rehype-enhanced-alert@latest/doc/types/~/Options
+[plugin-options]: https://jsr.io/@abhabongse/rehype-enhanced-alert/doc/types/~/Options
 
-[plugin-simple-options]: https://jsr.io/@abhabongse/rehype-enhanced-alert@latest/doc/types/~/SimpleOptions
+[plugin-simple-options]: https://jsr.io/@abhabongse/rehype-enhanced-alert/doc/types/~/SimpleOptions
 
 [rehype]: https://github.com/rehypejs/rehype
 

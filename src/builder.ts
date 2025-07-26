@@ -1,11 +1,10 @@
-import { rehypeEnhancedAlert } from "./mod.ts";
-
 /**
  * Provides a higher-ordered function to construct a plugin
  * that is a copy of {@linkcode rehypeEnhancedAlert}.
  *
  * @module builder
  */
+
 import type * as hast from "hast";
 import { whitespace } from "hast-util-whitespace";
 import { h } from "hastscript";
@@ -13,7 +12,7 @@ import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
 import { is } from "unist-util-is";
 
-import { DEFAULT_TYPES } from "./mod.ts";
+import { rehypeEnhancedAlert, DEFAULT_TYPES } from "./mod.ts";
 import type { CreateAlertCallback, Options } from "./types.ts";
 
 /*

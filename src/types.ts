@@ -1,5 +1,3 @@
-import { rehypeEnhancedAlert } from "./mod.ts";
-
 /**
  * Type definitions for the {@linkcode rehypeEnhancedAlert} plugin.
  *
@@ -7,6 +5,8 @@ import { rehypeEnhancedAlert } from "./mod.ts";
  */
 
 import type * as hast from "hast";
+
+import { rehypeEnhancedAlert } from "./mod.ts";
 
 /**
  * Plugin options for the {@linkcode rehypeEnhancedAlert} plugin.
