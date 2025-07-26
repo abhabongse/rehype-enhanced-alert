@@ -5,7 +5,6 @@
     "@abhabongse/rehype-enhanced-alert": "workspace:*",
     "@types/hast": "^3.0.4",
     "@types/node": "^24.1.0",
-    "glob": "^11.0.3",
     "hast-util-whitespace": "^3.0.0",
     "hastscript": "^9.0.1",
     "rehype": "^13.0.2",

@@ -97,7 +97,7 @@ However, with this plugin enabled, the same Markdown content would be transforme
 If you wish to achieve parity with the GitHub alert boxes (see example below),
 you will need to add some CSS styles to your project (e.g. mapping `alert-icon` class with [octicons][]).
 
-![Example Alert Boxes](test/github.svg)
+![Example Alert Boxes](examples/github-example.svg)
 
 However, this plugin provides you with a lot of flexibility. Please refer to the [API documentation](#api) documentation.
 
