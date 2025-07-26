@@ -1,0 +1,24 @@
+[tools]
+"aqua:watchexec/watchexec" = "latest"
+"deno" = "2"
+
+[tasks.live-docs]
+description = "Use deno to render documentation live"
+run = """
+#!/usr/bin/env bash
+
+# Ensure doc/ directory exists
+mkdir -p dist/docs/
+
+# Command to generate documentation
+GENERATE_DOCS="deno doc --html --output=dist/docs/ src/"
+
+echo "Starting Deno documentation watcher..."
+watchexec -w src/ -e ts,js,tsx,jsx -- "$GENERATE_DOCS" &
+
+echo "Starting live-server for doc/ directory..."
+live-server dist/docs/ --port=8000 --no-browser &
+
+# Wait for background processes to finish (optional, but good for cleanup)
+wait
+"""

@@ -19,7 +19,10 @@ import type { Options, CreateAlertCallback } from "./types.ts";
  */
 const alertRegex = /^\[!([A-Za-z0-9]+)]([^\n]*)\n?/;
 
-/** Default alert types supported by the plugin. */
+/**
+ *  Default alert types supported by the plugin, which are:
+ *  _"note"_, _"tip"_, _"important"_, _"warning"_, and _"caution"_.
+ */
 export const DEFAULT_TYPES = ["note", "tip", "important", "warning", "caution"];
 
 /*
@@ -77,10 +80,11 @@ function resolveCallback(options: Options): CreateAlertCallback {
 }
 
 /**
- * Creates a copy of the {@linkcode [mod.ts].rehypeEnhancedAlert|rehypeEnhancedAlert} plugin
+ * Creates a copy of the {@linkcode [mod.ts].rehypeEnhancedAlert | rehypeEnhancedAlert} plugin
  * so that it can be used multiple times with various sets of options.
  *
- * @see {@link [./mod.ts]} for further information.
+ * @see {@link https://jsr.io/@abhabongse/rehype-enhanced-alert | Package Overview}
+ * for more information.
  *
  * @returns A copy of {@linkcode rehypeEnhancedAlert} plugin.
  */
