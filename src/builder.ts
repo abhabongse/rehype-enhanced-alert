@@ -1,6 +1,6 @@
 /**
  * Provides a higher-ordered function to construct a plugin
- * that is a copy of {@linkcode [./mod].rehypeEnhancedAlert | rehypeEnhancedAlert}.
+ * that is a copy of {@linkcode [mod.ts].rehypeEnhancedAlert | rehypeEnhancedAlert}.
  *
  * @module builder
  */

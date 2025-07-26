@@ -12,6 +12,8 @@ import type { Options } from "./types.ts";
  * for a walkthrough on plugin features.
  *
  * @see {@linkcode Options} for API references on plugin options.
+ *
+ * @see {@link [types.ts]} or {@link [./types]}
  */
 export const rehypeEnhancedAlert: Plugin<[Options?], hast.Root> = builder();
 

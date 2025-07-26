@@ -7,7 +7,7 @@
 import type * as hast from "hast";
 
 /**
- * Plugin options for the {@linkcode [./mod.ts].rehypeEnhancedAlert | rehypeEnhancedAlert} plugin.
+ * Plugin options for the {@linkcode [mod.ts].rehypeEnhancedAlert | rehypeEnhancedAlert} plugin.
  * It can be either a simple set of options {@linkcode SimpleOptions}
  * or a callback function {@linkcode CreateAlertCallback}
  * which allows for extensive customizations.
@@ -15,7 +15,7 @@ import type * as hast from "hast";
 export type Options = SimpleOptions | CreateAlertCallback;
 
 /**
- * A simple set of options for {@linkcode [mod].rehypeEnhancedAlert | rehypeEnhancedAlert} plugin.
+ * A simple set of options for {@linkcode [mod.ts].rehypeEnhancedAlert | rehypeEnhancedAlert} plugin.
  */
 export interface SimpleOptions {
   /**
@@ -89,7 +89,7 @@ export interface SimpleOptions {
  * In fact, you are encouraged to look at the source code to see how
  * a factory function creates a callback function out of {@linkcode SimpleOptions}.
  *
- * ## Function Parameters
+ * ### Function Parameters
  *
  * - `alertType`: Type of the alert that appeared between a pair of brackets,
  *   but transformed to lowercase. For example, the alert marker `[!HeLLo]`
@@ -101,7 +101,7 @@ export interface SimpleOptions {
  *   Avoid modifying this if the callback decides
  *   not to transform the blockquote element.
  *
- * ## Returns
+ * ### Returns
  *
  * Either a HAST node representing the complete alert block,
  * or the boolean value `false` to skip creating the alert block altogether.
