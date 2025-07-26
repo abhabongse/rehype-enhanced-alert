@@ -8,7 +8,7 @@ with enhanced features and customization.
 
 ## What is this?
 
-This [unified][] ([rehype][]) plugin mimics how 
+This [unified][] ([rehype][]) plugin mimics how
 [GitHub renders alert boxes in Markdown][github-alert-docs].
 It allows content authors to reuse the blockquote syntax
 to annotate alert boxes (a.k.a. callouts, admonitions, asides, info boxes).
@@ -92,7 +92,7 @@ However, with this plugin enabled, the same Markdown content would be transforme
 </aside>
 <aside class="alert alert--caution"><p class="alert-heading"><span class="alert-icon alert--caution"></span>Caution</p><p>Advises about risks or negative outcomes of certain actions.</p>
 </aside>
-``` 
+```
 
 If you wish to achieve parity with the GitHub alert boxes (see example below),
 you will need to add some CSS styles to your project (e.g. mapping `alert-icon` class with [octicons][]).
@@ -149,7 +149,7 @@ Yields:
 ```html
 <aside class="alert alert--note"><p class="alert-heading"><span class="alert-icon alert--note"></span>Important Note</p><p>Useful information that users should know, even when skimming content.</p>
 </aside> 
-``` 
+```
 
 To disable this feature, set the option `allowsCustomHeading` to `false`.
 With this option disabled, the plugin will *not* transform the blockquote into an alert box.
@@ -236,7 +236,7 @@ For example, setting the `classPrefix` to `callout` will transform:
 ```markdown
 > [!NOTE]
 > This is a note alert box.
-``` 
+```
 
 into:
 
@@ -305,8 +305,7 @@ Hence, you can acheive the aforementioned goal by doing the following:
 ```typescript
 import { builder as rehypeEnhancedAlert } from "@abhabongse/rehype-enhanced-alert/builder";
 
-```  
-
+```
 
 <!-- Definitions -->
 
@@ -331,4 +330,3 @@ import { builder as rehypeEnhancedAlert } from "@abhabongse/rehype-enhanced-aler
 [remark-rehype]: https://github.com/remarkjs/remark-rehype
 
 [unified]: https://github.com/unifiedjs/unified
-

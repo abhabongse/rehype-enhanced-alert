@@ -1,6 +1,13 @@
+/**
+ * Provides a higher-ordered function to construct a plugin
+ * that is a copy of {@linkcode [mod.ts].rehypeEnhancedAlert|rehypeEnhancedAlert}.
+ *
+ * @module
+ */
 import type * as hast from "hast";
 import { whitespace } from "hast-util-whitespace";
 import { h } from "hastscript";
+import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
 import { is } from "unist-util-is";
 
@@ -10,18 +17,17 @@ import type { Options, CreateAlertCallback } from "./types.ts";
  * Pattern that matches GitHub-style alert syntax at the beginning of a paragraph
  * followed by the optional display name of the alert.
  */
-const alertRegex = /^\[!([A-Z]+)]([^\n]*)\n?/;
+const alertRegex = /^\[!([A-Za-z0-9]+)]([^\n]*)\n?/;
 
-/** Default alert types */
-const defaultTypes = ["note", "tip", "important", "warning", "caution"];
+/** Default alert types supported by the plugin. */
+export const DEFAULT_TYPES = ["note", "tip", "important", "warning", "caution"];
 
-/**
- * Resolve a callback function for creating alert blocks based on provided options.
- * If the function is provided, return it as is.
- * Otherwise, create a default callback function based on the simple options.
- *
- * @param options - Configuration options determining how alert blocks are created and validated.
- * @return The callback function to create (or validate) alert blocks.
+/*
+ * Resolves a callback function for creating alert blocks.
+ * If a function is provided as the option,
+ * it is assumed to be of the type `CreateAlertCallback` and will be returned as it.
+ * Otherwise, it is assumed to be of the type `SimpleOptions`
+ * which will be used to create a new callback function of the type `CreateAlertCallback`.
  */
 function resolveCallback(options: Options): CreateAlertCallback {
   if (typeof options === "function") {
@@ -45,7 +51,7 @@ function resolveCallback(options: Options): CreateAlertCallback {
       } else if (Array.isArray(allowedTypes)) {
         return allowedTypes.includes(type);
       } else {
-        return defaultTypes.includes(type);
+        return DEFAULT_TYPES.includes(type);
       }
     }
 
@@ -71,12 +77,14 @@ function resolveCallback(options: Options): CreateAlertCallback {
 }
 
 /**
- * Uses this function to create a copy of Rehype Custom Alert plugin
- * so that it can be used multiple times with different configurations.
+ * Creates a copy of the {@linkcode [mod.ts].rehypeEnhancedAlert|rehypeEnhancedAlert} plugin
+ * so that it can be used multiple times with various sets of options.
  *
- * @return A copy of Rehype Custom Alert plugin
+ * @see {@link [./mod.ts]} for further information.
+ *
+ * @returns A copy of {@linkcode rehypeEnhancedAlert} plugin.
  */
-export function builder(): (options?: Options) => (tree: hast.Root) => void {
+export function builder(): Plugin<[Options?], hast.Root> {
   return function (options: Options = {}): (tree: hast.Root) => void {
     const callback = resolveCallback(options);
 

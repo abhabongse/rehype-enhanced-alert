@@ -1,4 +1,4 @@
-import rehypeEnhancedAlert from "@abhabongse/rehype-enhanced-alert";
+import { rehypeEnhancedAlert } from "@abhabongse/rehype-enhanced-alert";
 import rehypeParse from "rehype-parse";
 import rehypeStringify from "rehype-stringify";
 import remarkParse from "remark-parse";

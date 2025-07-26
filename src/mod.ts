@@ -1,11 +1,16 @@
+import type * as hast from "hast";
+import type { Plugin } from "unified";
+
 import { builder } from "./builder.ts";
+import type { Options } from "./types.ts";
 
 /**
- * Transforms blockquotes containing alerts into styled alert blocks using a custom callback function.
- * Alerts are identified by a syntax pattern within the first paragraph of a blockquote.
+ * A {@link https://github.com/rehypejs/rehype | Rehype} plugin
+ * which transforms some blockquote elements into alert boxes.
  *
- * @param options - Configuration object for the rehype plugin.
- * @return A transformer function that modifies the HAST tree.
+ * @see {@link https://jsr.io/@abhabongse/rehype-enhanced-alert | Package Overview}
+ * for a walkthrough on plugin features.
+ *
+ * @see {@linkcode Options} for API references on plugin options.
  */
-const rehypeEnhancedAlert = builder();
-export default rehypeEnhancedAlert;
+export const rehypeEnhancedAlert: Plugin<[Options?], hast.Root> = builder();
