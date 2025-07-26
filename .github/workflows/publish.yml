@@ -17,7 +17,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Install mise
-        uses: jdx/mise-action@
+        uses: jdx/mise-action@v2
       - name: Install pnpm dependencies
         run: pnpm install
       - name: Publish package
