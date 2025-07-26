@@ -1,3 +1,5 @@
+import { rehypeEnhancedAlert } from "./mod.ts";
+
 /**
  * Type definitions for the {@linkcode rehypeEnhancedAlert} plugin.
  *
