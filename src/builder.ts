@@ -1,8 +1,8 @@
 /**
  * Provides a higher-ordered function to construct a plugin
- * that is a copy of {@linkcode [mod.ts].rehypeEnhancedAlert|rehypeEnhancedAlert}.
+ * that is a copy of {@linkcode [./mod].rehypeEnhancedAlert | rehypeEnhancedAlert}.
  *
- * @module
+ * @module builder
  */
 import type * as hast from "hast";
 import { whitespace } from "hast-util-whitespace";
@@ -11,19 +11,14 @@ import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
 import { is } from "unist-util-is";
 
-import type { Options, CreateAlertCallback } from "./types.ts";
+import { DEFAULT_TYPES } from "./mod.ts";
+import type { CreateAlertCallback, Options } from "./types.ts";
 
 /*
  * Pattern that matches GitHub-style alert syntax at the beginning of a paragraph
  * followed by the optional display name of the alert.
  */
 const alertRegex = /^\[!([A-Za-z0-9]+)]([^\n]*)\n?/;
-
-/**
- *  Default alert types supported by the plugin, which are:
- *  _"note"_, _"tip"_, _"important"_, _"warning"_, and _"caution"_.
- */
-export const DEFAULT_TYPES = ["note", "tip", "important", "warning", "caution"];
 
 /*
  * Resolves a callback function for creating alert blocks.

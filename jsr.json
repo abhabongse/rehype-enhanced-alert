@@ -9,6 +9,6 @@
     "./types": "./src/types.ts"
   },
   "publish": {
-    "exclude": [".github", ".idea"]
+    "exclude": [".github", ".idea", ".mise", ".prettierignore"]
   }
 }

@@ -1,9 +1,9 @@
 # Enhanced Alert Boxes for Rehype
 
-[![JSR][jsr-badge]][jsr-package]
+[![JSR][jsr-badge]][jsr-package-overview]
 
-A [rehype][] plugin enabling [GitHub-style alert boxes][github-alert-docs] in Markdown
-with enhanced features and customization.
+A [rehype][] plugin enabling [GitHub-style alert boxes][github-alert-docs]
+in Markdown with enhanced features and customization.
 
 
 ## What is this?
@@ -58,7 +58,10 @@ Say our Markdown content looks like this:
 > Advises about risks or negative outcomes of certain actions.
 ```
 
-Without this plugin, the Markdown content would render as a series of blockquotes. Using [remark-rehype][], converting the above Markdown example into HTML would look like this:
+Without this plugin, the Markdown content would render
+as a series of blockquotes.
+Using [remark-rehype][], converting the above Markdown example
+into HTML would look like this:
 
 ```html
 <blockquote>
@@ -79,7 +82,8 @@ Urgent info that needs immediate user attention to avoid problems.</p>
 </blockquote>
 ```
 
-However, with this plugin enabled, the same Markdown content would be transformed into HTML like this:
+However, with this plugin enabled,
+the same Markdown content would be transformed into HTML like this:
 
 ```html
 <aside class="alert alert--note"><p class="alert-heading"><span class="alert-icon alert--note"></span>Note</p><p>Useful information that users should know, even when skimming content.</p>
@@ -95,27 +99,50 @@ However, with this plugin enabled, the same Markdown content would be transforme
 ```
 
 If you wish to achieve parity with the GitHub alert boxes (see example below),
-you will need to add some CSS styles to your project (e.g. mapping `alert-icon` class with [octicons][]).
+you will need to add some CSS styles to your project
+(e.g. mapping `alert-icon` class with [octicons][]).
 
 ![Example Alert Boxes](examples/github-example.svg)
 
-However, this plugin provides you with a lot of flexibility. Please refer to the [API documentation](#api) documentation.
+However, this plugin provides you with a lot of flexibility.
+Please refer to the [Advanced Features](#advanced-features) section below.
 
 
-## Install
+## Installation
 
-Head over to the [JSR package page][jsr-package] for installation instructions.
+Head over to the [package home page on JSR][jsr-package-overview]
+on how to install the plugin package.
 
+```shell
+# Install with npm 
+npx jsr add @abhabongse/rehype-enhanced-alert
 
-## API
+# Install with pnpm 10.9+
+pnpm i jsr:@abhabongse/rehype-enhanced-alert
 
-Head over to the [JSR package documentation][jsr-doc] for the full API documentation.
+# Install with pnpm (older versions)
+pnpm dlx jsr add @abhabongse/rehype-enhanced-alert
+
+# Install with yarn 4.9+
+yarn add jsr:@abhabongse/rehype-enhanced-alert
+
+# Install with yarn (older versions)
+yarn dlx jsr add @abhabongse/rehype-enhanced-alert
+
+# Install with deno
+deno add jsr:@abhabongse/rehype-enhanced-alert
+
+# Install with bun
+bunx jsr add @abhabongse/rehype-enhanced-alert
+```
+
+To use the plugin in your pipeline,
+consult the relevant documentation with the keyword [rehype][].
 
 
 ## Advanced Features
 
-All plugin features can be configured via options.
-They can either be a configuration object or a callback function that returns an HTML element.
+All plugin features can be customized via [`Options`][plugin-options].
 
 ```typescript
 type Options = SimpleOptions | CreateAlertCallback;
@@ -133,11 +160,14 @@ type CreateAlertCallback = (
 ) => hast.Element | false;
 ```
 
-In this section, we will go through the available options and how to use them.
+In this section, let’s walk through each feature and how to enable them.
+Visit [API reference][package-api-reference] for more details.
 
-### Feature: custom heading
+### Feature: Custom Heading
 
-By default, the plugin allows custom heading right after the alert type marker `[!TYPE]`. For example,
+By default, the plugin allows custom heading
+right after the alert type marker `[!TYPE]`.
+For example,
 
 ```markdown
 > [!NOTE] Important Note
@@ -151,18 +181,20 @@ Yields:
 </aside> 
 ```
 
-To disable this feature, set the option `allowsCustomHeading` to `false`.
+To disable this feature, set the option [`allowsCustomHeading`][plugin-simple-options] to `false`.
 With this option disabled, the plugin will *not* transform the blockquote into an alert box.
 
-### Feature: add custom alert types
+### Feature: Add Custom Alert Types
 
 By default, only these alert types are supported (reflecting the original implementation by GitHub):
 `note`, `tip`, `important`, `warning`, and `caution`.
 
-To add custom alert types, use the `allowedTypes` option to specify a list of allowed alert types.
+To add custom alert types, use the [`allowedTypes`][plugin-simple-options] option
+to specify a list of allowed alert types.
 If you wish to keep the original alert types, you must also include them in the list.
 
-Suppose that `allowedTypes` is set to `["note", "example"]`. The following Markdown content:
+Suppose that [`allowedTypes`][plugin-simple-options] is set to `["note", "example"]`.
+The following Markdown content:
 
 ```markdown
 > [!NOTE]
@@ -195,21 +227,28 @@ This is a thanks alert box.</p>
 </blockquote>
 ```
 
-**Important:** Alert type markers in the blockquote content and the list of allowed types in the plugin options
-are compared in a case-insensitive manner.
-However, the generated class names for the alert types will preserve its original case
-as specified in the `allowedTypes` option.
-We recommend using lowercase alphabets for the alert type names in the `allowedTypes` option
+**Important:** Alert type markers `[!TYPE]` are case-insensitive by themselves.
+It may only consist of alphanumeric characters (uppercases A-Z, lowercases a-z, and digits 0-9).
+These alert types will be normalized into lowercase forms before
+being checked against the list of allowed types ([`allowedTypes`][plugin-simple-options]).
+The generated class names will reuse their lowercase forms as well.
+Therefore, we recommend using lowercase alphabets for the alert type names
+in the [`allowedTypes`][plugin-simple-options] option
 to maintain consistency and avoid confusion.
 
-**Note:** When custom heading is left unspecified in the blockquote content (or is disabled via the `allowCustomHeading` option),
-the plugin will auto capitalize the alert type name as the display heading.
+**Note:** When the custom heading is left unspecified in the first line of the blockquote,
+the plugin will auto-capitalize the alert type name as the display heading.
 
-### Feature: allow all alert types
+### Feature: Allow All Alert Types
 
-To allow all alert types, set the `allowedTypes` option to the boolean `true`. This will allow any alert type marker in the blockquote content to be transformed into an alert box. Also, the alert type names will be in lowercases when appear in class names.
+To allow all alert types, set the [`allowedTypes`][plugin-simple-options] option
+to the boolean `true`.
+This will allow any alert type marker in the blockquote content
+to be transformed into an alert box.
+Also, the alert type names will be in lowercases when appear in class names.
 
-Continuing from the previous example of the Markdown content, setting `allowedTypes` to `true` will yield:
+Continuing from the previous example of the Markdown content,
+setting [`allowedTypes`][plugin-simple-options] to `true` will yield:
 
 ```html
 <aside class="alert alert--note"><p class="alert-heading"><span class="alert-icon alert--note"></span>Note</p><p>This is a note alert box.</p>
@@ -222,12 +261,15 @@ Continuing from the previous example of the Markdown content, setting `allowedTy
 </aside>
 ```
 
-**Note:** In case you are curious, the option `allowedTypes` is set to `false` as the default value,
+**Note:** In case you are curious, the option [`allowedTypes`][plugin-simple-options]
+is set to `false` as the default value,
 meaning that only the default alert types are allowed.
 
-### Feature: change class name prefix
+### Feature: Change Class Name Prefixes
 
-By default, the plugin uses `alert` as the main class name of the `<aside>` element as well as the prefix for relevant class names such as `alert-icon`, `alert-heading`, `alert--note`, `alert--tip`, etc.
+By default, the plugin uses `alert` as the main class name of the `<aside>` element
+as well as the prefix for relevant class names
+such as `alert-icon`, `alert-heading`, `alert--note`, `alert--tip`, etc.
 
 This value can be replaced with a custom value by setting the `classPrefix` option.
 
@@ -247,15 +289,17 @@ into:
 
 ### Feature: custom HTML element
 
-You can ignore all the above options and provide a custom HTML structure for the alert boxes specifying the callback function as the plugin options.
+You can ignore all the above options and provide a custom HTML structure
+for the alert boxes specifying the callback function as the plugin options.
 
-For example, one might want to create a custom alert box that inlines the body content with the icon.
+For example, one might want to create a custom alert box
+that inlines the body content with the icon.
 To achieve this, you can define the callback function like this:
 
 ```typescript
 import type * as hast from "hast";
-import { whitespace } from "hast-util-whitespace";
-import { h } from "hastscript";
+import {whitespace} from "hast-util-whitespace";
+import {h} from "hastscript";
 
 function createSmallnoteAlert(
   alertType: string,
@@ -300,12 +344,27 @@ typically you cannot repeat the same plugin in the pipeline.
 However, this plugin provides a special mechanism to create new instances of the plugin
 via the `builder()` function under `@abhabongse/rehype-enhanced-alert/builder` entrypoint.
 
-Hence, you can acheive the aforementioned goal by doing the following:
+Hence, you can achieve the aforementioned goal by doing the following:
 
 ```typescript
 import { builder as rehypeEnhancedAlert } from "@abhabongse/rehype-enhanced-alert/builder";
+import rehypeStringify from "rehype-stringify";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import { unified } from "unified";
 
+export const mixedPluginsProcessor = unified()
+  .use(remarkParse)
+  .use(remarkRehype)
+  .use(rehypeEnhancedAlert(), createSmallnoteAlert)
+  .use(rehypeEnhancedAlert(), { allowedTypes: true })
+  .use(rehypeStringify);
 ```
+
+
+## API Reference
+
+Head over to the [JSR package documentation][package-api-reference] for the full API documentation.
 
 <!-- Definitions -->
 
@@ -315,11 +374,15 @@ import { builder as rehypeEnhancedAlert } from "@abhabongse/rehype-enhanced-aler
 
 [jsr-badge]: https://jsr.io/badges/@abhabongse/rehype-enhanced-alert
 
-[jsr-doc]: https://jsr.io/@abhabongse/rehype-enhanced-alert/doc
-
-[jsr-package]: https://jsr.io/@abhabongse/rehype-enhanced-alert
+[jsr-package-overview]: https://jsr.io/@abhabongse/rehype-enhanced-alert
 
 [octicons]: https://github.com/primer/octicons
+
+[package-api-reference]: https://jsr.io/@abhabongse/rehype-enhanced-alert/doc
+
+[plugin-options]: https://jsr.io/@abhabongse/rehype-enhanced-alert@latest/doc/types/~/Options
+
+[plugin-simple-options]: https://jsr.io/@abhabongse/rehype-enhanced-alert@latest/doc/types/~/SimpleOptions
 
 [rehype]: https://github.com/rehypejs/rehype
 

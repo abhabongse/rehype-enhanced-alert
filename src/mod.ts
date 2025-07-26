@@ -14,3 +14,12 @@ import type { Options } from "./types.ts";
  * @see {@linkcode Options} for API references on plugin options.
  */
 export const rehypeEnhancedAlert: Plugin<[Options?], hast.Root> = builder();
+
+/**
+ *  Default alert types supported by the plugin, which are:
+ *
+ *  ```typescript
+ *  export const DEFAULT_TYPES = ["note", "tip", "important", "warning", "caution"];
+ *  ```
+ */
+export const DEFAULT_TYPES = ["note", "tip", "important", "warning", "caution"];

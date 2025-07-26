@@ -1,13 +1,13 @@
 /**
  * Type definitions for the {@linkcode [mod.ts].rehypeEnhancedAlert | rehypeEnhancedAlert} plugin.
  *
- * @module
+ * @module types
  */
 
 import type * as hast from "hast";
 
 /**
- * Plugin options for the {@linkcode [mod.ts].rehypeEnhancedAlert | rehypeEnhancedAlert} plugin.
+ * Plugin options for the {@linkcode [./mod.ts].rehypeEnhancedAlert | rehypeEnhancedAlert} plugin.
  * It can be either a simple set of options {@linkcode SimpleOptions}
  * or a callback function {@linkcode CreateAlertCallback}
  * which allows for extensive customizations.
@@ -15,7 +15,7 @@ import type * as hast from "hast";
 export type Options = SimpleOptions | CreateAlertCallback;
 
 /**
- * A simple set of options for {@linkcode [mod.ts].rehypeEnhancedAlert | rehypeEnhancedAlert} plugin.
+ * A simple set of options for {@linkcode [mod].rehypeEnhancedAlert | rehypeEnhancedAlert} plugin.
  */
 export interface SimpleOptions {
   /**
@@ -89,15 +89,22 @@ export interface SimpleOptions {
  * In fact, you are encouraged to look at the source code to see how
  * a factory function creates a callback function out of {@linkcode SimpleOptions}.
  *
- * @param alertType Type of the alert that appeared between a pair of brackets, but transformed to lowercase.
- *   For example, the alert marker `[!HeLLo]` would be passed in as the alert type _"hello"_.
- * @param displayText Text that appears right after the alert type in brackets.
+ * ## Function Parameters
+ *
+ * - `alertType`: Type of the alert that appeared between a pair of brackets,
+ *   but transformed to lowercase. For example, the alert marker `[!HeLLo]`
+ *   would be passed in as the alert type _"hello"_.
+ * - `displayText`: Text that appears right after the alert type in brackets.
  *   This value usually represents a custom heading of the alert box,
  *   although it can be repurposed for other needs as well.
- * @param children The body content of the alert block.
- *    Avoid modifying this if the callback decides not to transform the blockquote element.
- * @returns Either a HAST node representing the complete alert block,
- *    or the boolean value `false` to skip creating the alert block altogether.
+ * - `children`: The body content of the alert block.
+ *   Avoid modifying this if the callback decides
+ *   not to transform the blockquote element.
+ *
+ * ## Returns
+ *
+ * Either a HAST node representing the complete alert block,
+ * or the boolean value `false` to skip creating the alert block altogether.
  */
 export type CreateAlertCallback = (
   alertType: string,
