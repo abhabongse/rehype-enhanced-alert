@@ -1,6 +1,40 @@
 {
+  "name": "@abhabongse/rehype-enhanced-alert",
+  "private": true,
   "type": "module",
+  "types": "./src/mod.ts",
+  "main": "./src/mod.ts",
+  "exports": {
+    ".": {
+      "types": "./src/mod.ts",
+      "import": "./src/mod.ts"
+    },
+    "./builder": {
+      "types": "./src/builder.ts",
+      "import": "./src/builder.ts"
+    },
+    "./types": {
+      "types": "./src/types.ts",
+      "import": "./src/types.ts"
+    }
+  },
   "scripts": {
     "preinstall": "npx only-allow pnpm"
+  },
+  "dependencies": {
+    "@types/hast": "^3.0.4",
+    "hast-util-whitespace": "^3.0.0",
+    "hastscript": "^9.0.1",
+    "unist-util-is": "^6.0.0",
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "prettier": "^3.6.2",
+    "remark-cli": "^12.0.1",
+    "remark-frontmatter": "^5.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-heading-gap": "^6.0.0",
+    "remark-mdx": "^3.1.0"
   }
 }

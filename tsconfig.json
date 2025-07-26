@@ -1,0 +1,22 @@
+{
+  // See more: https://www.typescriptlang.org/tsconfig/
+  "compilerOptions": {
+    // Type Checking
+    "strict": true,
+
+    // Modules
+    "allowImportingTsExtensions": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+
+    // Interop Constraints
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // Language and Environment
+    "target": "ES2024",
+
+    // Completeness
+    "skipLibCheck": true
+  }
+}

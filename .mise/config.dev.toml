@@ -1,0 +1,43 @@
+[tools]
+node = "24"
+
+[env]
+_.path = [
+    "{{config_root}}/node_modules/.bin",
+]
+
+#   ____          _         ___              _ _ _
+#  / ___|___   __| | ___   / _ \ _   _  __ _| (_) |_ _   _
+# | |   / _ \ / _` |/ _ \ | | | | | | |/ _` | | | __| | | |
+# | |__| (_) | (_| |  __/ | |_| | |_| | (_| | | | |_| |_| |
+#  \____\___/ \__,_|\___|  \__\_\\__,_|\__,_|_|_|\__|\__, |
+#                                                   |___/
+
+[tasks.typecheck]
+description = "Performs type checking"
+run = [
+    "astro check",
+    "tsc --noEmit",
+]
+alias = "tc"
+
+[tasks.format]
+description = "Formats the code base"
+depends = [
+    "format:markdown .",
+    "format:mdx .",
+    "format:prettier .",
+]
+alias = "f"
+
+[tasks."format:markdown"]
+description = "Formats Markdown files"
+run = "remark {{arg(name='path', help='Path to markdown file')}} -u frontmatter -u gfm -u heading-gap -fo"
+
+[tasks."format:mdx"]
+description = "Formats MDX files"
+run = "remark {{arg(name='path', help='Path to MDX file')}} -e mdx -u frontmatter -u gfm -u heading-gap -u mdx -fo"
+
+[tasks."format:prettier"]
+description = "Formats code with Prettier"
+run = "prettier {{arg(name='path', help='Path to run prettier')}} --write"
