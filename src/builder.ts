@@ -1,6 +1,8 @@
+import { rehypeEnhancedAlert } from "./mod.ts";
+
 /**
  * Provides a higher-ordered function to construct a plugin
- * that is a copy of {@linkcode [mod.ts].rehypeEnhancedAlert | rehypeEnhancedAlert}.
+ * that is a copy of {@linkcode rehypeEnhancedAlert}.
  *
  * @module builder
  */
@@ -75,7 +77,7 @@ function resolveCallback(options: Options): CreateAlertCallback {
 }
 
 /**
- * Creates a copy of the {@linkcode [mod.ts].rehypeEnhancedAlert | rehypeEnhancedAlert} plugin
+ * Creates a copy of the {@linkcode rehypeEnhancedAlert} plugin
  * so that it can be used multiple times with various sets of options.
  *
  * @see {@link https://jsr.io/@abhabongse/rehype-enhanced-alert | Package Overview}

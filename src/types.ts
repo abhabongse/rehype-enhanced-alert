@@ -1,5 +1,5 @@
 /**
- * Type definitions for the {@linkcode [mod.ts].rehypeEnhancedAlert | rehypeEnhancedAlert} plugin.
+ * Type definitions for the {@linkcode rehypeEnhancedAlert} plugin.
  *
  * @module types
  */
@@ -7,7 +7,7 @@
 import type * as hast from "hast";
 
 /**
- * Plugin options for the {@linkcode [mod.ts].rehypeEnhancedAlert | rehypeEnhancedAlert} plugin.
+ * Plugin options for the {@linkcode rehypeEnhancedAlert} plugin.
  * It can be either a simple set of options {@linkcode SimpleOptions}
  * or a callback function {@linkcode CreateAlertCallback}
  * which allows for extensive customizations.
@@ -15,7 +15,7 @@ import type * as hast from "hast";
 export type Options = SimpleOptions | CreateAlertCallback;
 
 /**
- * A simple set of options for {@linkcode [mod.ts].rehypeEnhancedAlert | rehypeEnhancedAlert} plugin.
+ * A simple set of options for {@linkcode rehypeEnhancedAlert} plugin.
  */
 export interface SimpleOptions {
   /**
