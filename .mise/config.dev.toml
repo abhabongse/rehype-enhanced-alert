@@ -11,7 +11,7 @@ run = """
 mkdir -p dist/docs/
 
 # Command to generate documentation
-GENERATE_DOCS="deno doc --html --output=dist/docs/ src/"
+GENERATE_DOCS="deno doc --html --name=@abhabongse/rehype-enhanced-alert --output=dist/docs/ src/"
 
 echo "Starting Deno documentation watcher..."
 watchexec -w src/ -e ts,js,tsx,jsx -- "$GENERATE_DOCS" &

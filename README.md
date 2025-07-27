@@ -23,14 +23,14 @@ When it finds this marker, it transforms the blockquote element
 into a different HTML structure which can be styled as an alert box.
 
 This plugin is based on the [rehype-github-alert][] plugin,
-but with more features and customization options whether it be simple styling
+but with more features and customization options, whether it be simple styling
 or a more complex construction of HTML elements representing the alert boxes.
 
 
 ## When should I use this?
 
 This plugin helps you author Markdown content with alert boxes
-without having to learn to use a different syntax (like [remark-directive][]).
+without resorting to a more complex [remark-directive][] plugin.
 By sharing the same syntax as GitHub alerts,
 you can expect your Markdown content to render properly
 both on GitHub and on web platforms you develop.
@@ -139,6 +139,11 @@ bunx jsr add @abhabongse/rehype-enhanced-alert
 To use the plugin in your pipeline,
 consult the relevant documentation with the keyword [rehype][].
 
+- [Astro](https://docs.astro.build/en/guides/markdown-content/#adding-remark-and-rehype-plugins)
+- [MDX](https://mdxjs.com/docs/extending-mdx/#using-plugins)
+- [Next.js](https://nextjs.org/docs/app/guides/mdx#remark-and-rehype-plugins)
+- [Nuxt Content](https://content.nuxt.com/docs/getting-started/configuration#rehypeplugins)
+
 
 ## Advanced Features
 
@@ -181,7 +186,7 @@ Yields:
 </aside> 
 ```
 
-To disable this feature, set the option [`allowsCustomHeading`][plugin-simple-options] to `false`.
+To disable this feature, set the option [`allowsCustomHeading`][option-allowsCustomHeading] to `false`.
 With this option disabled, the plugin will *not* transform the blockquote into an alert box.
 
 ### Feature: Add Custom Alert Types
@@ -189,11 +194,11 @@ With this option disabled, the plugin will *not* transform the blockquote into a
 By default, only these alert types are supported (reflecting the original implementation by GitHub):
 `note`, `tip`, `important`, `warning`, and `caution`.
 
-To add custom alert types, use the [`allowedTypes`][plugin-simple-options] option
+To add custom alert types, use the [`allowedTypes`][option-allowedTypes] option
 to specify a list of allowed alert types.
 If you wish to keep the original alert types, you must also include them in the list.
 
-Suppose that [`allowedTypes`][plugin-simple-options] is set to `["note", "example"]`.
+Suppose that [`allowedTypes`][option-allowedTypes] is set to `["note", "example"]`.
 The following Markdown content:
 
 ```markdown
@@ -230,10 +235,10 @@ This is a thanks alert box.</p>
 **Important:** Alert type markers `[!TYPE]` are case-insensitive by themselves.
 It may only consist of alphanumeric characters (uppercases A-Z, lowercases a-z, and digits 0-9).
 These alert types will be normalized into lowercase forms before
-being checked against the list of allowed types ([`allowedTypes`][plugin-simple-options]).
+being checked against the list of allowed types ([`allowedTypes`][option-allowedTypes]).
 The generated class names will reuse their lowercase forms as well.
 Therefore, we recommend using lowercase alphabets for the alert type names
-in the [`allowedTypes`][plugin-simple-options] option
+in the [`allowedTypes`][option-allowedTypes] option
 to maintain consistency and avoid confusion.
 
 **Note:** When the custom heading is left unspecified in the first line of the blockquote,
@@ -241,14 +246,14 @@ the plugin will auto-capitalize the alert type name as the display heading.
 
 ### Feature: Allow All Alert Types
 
-To allow all alert types, set the [`allowedTypes`][plugin-simple-options] option
+To allow all alert types, set the [`allowedTypes`][option-allowedTypes] option
 to the boolean `true`.
 This will allow any alert type marker in the blockquote content
 to be transformed into an alert box.
 Also, the alert type names will be in lowercases when appear in class names.
 
 Continuing from the previous example of the Markdown content,
-setting [`allowedTypes`][plugin-simple-options] to `true` will yield:
+setting [`allowedTypes`][option-allowedTypes] to `true` will yield:
 
 ```html
 <aside class="alert alert--note"><p class="alert-heading"><span class="alert-icon alert--note"></span>Note</p><p>This is a note alert box.</p>
@@ -261,7 +266,7 @@ setting [`allowedTypes`][plugin-simple-options] to `true` will yield:
 </aside>
 ```
 
-**Note:** In case you are curious, the option [`allowedTypes`][plugin-simple-options]
+**Note:** In case you are curious, the option [`allowedTypes`][option-allowedTypes]
 is set to `false` as the default value,
 meaning that only the default alert types are allowed.
 
@@ -271,9 +276,9 @@ By default, the plugin uses `alert` as the main class name of the `<aside>` elem
 as well as the prefix for relevant class names
 such as `alert-icon`, `alert-heading`, `alert--note`, `alert--tip`, etc.
 
-This value can be replaced with a custom value by setting the `classPrefix` option.
+This value can be replaced with a custom value by setting the [`classPrefix`][option-classPrefix] option.
 
-For example, setting the `classPrefix` to `callout` will transform:
+For example, setting the [`classPrefix`][option-classPrefix] to *"callout"* will transform:
 
 ```markdown
 > [!NOTE]
@@ -287,7 +292,7 @@ into:
 </aside>
 ```
 
-### Feature: custom HTML element
+### Feature: Custom HTML Element
 
 You can ignore all the above options and provide a custom HTML structure
 for the alert boxes specifying the callback function as the plugin options.
@@ -333,7 +338,7 @@ Yields:
 </aside>
 ```
 
-### Feature: using this plugin more than once
+### Feature: Using This Plugin More Than Once
 
 Suppose that you are inspired by [the previous feature](#feature-custom-html-element)
 and wish to configure your rehype pipeline to use this plugin twice,
@@ -380,9 +385,13 @@ Head over to the [JSR package documentation][package-api-reference] for the full
 
 [package-api-reference]: https://jsr.io/@abhabongse/rehype-enhanced-alert/doc
 
-[plugin-options]: https://jsr.io/@abhabongse/rehype-enhanced-alert/doc/types/~/Options
+[option-allowedTypes]: https://jsr.io/@abhabongse/rehype-enhanced-alert/doc/types/~/SimpleOptions#property_allowedtypes
 
-[plugin-simple-options]: https://jsr.io/@abhabongse/rehype-enhanced-alert/doc/types/~/SimpleOptions
+[option-allowsCustomHeading]: https://jsr.io/@abhabongse/rehype-enhanced-alert/doc/types/~/SimpleOptions#property_allowscustomheading
+
+[option-classPrefix]: https://jsr.io/@abhabongse/rehype-enhanced-alert/doc/types/~/SimpleOptions#property_classprefix
+
+[plugin-options]: https://jsr.io/@abhabongse/rehype-enhanced-alert/doc/types/~/Options
 
 [rehype]: https://github.com/rehypejs/rehype
 
