@@ -1,6 +1,7 @@
 [tools]
 "aqua:mikefarah/yq" = "latest"
 node = "24"
+pnpm = "10"
 
 [env]
 _.path = [
