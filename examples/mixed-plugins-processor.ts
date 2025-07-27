@@ -1,4 +1,3 @@
-import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { builder as rehypeEnhancedAlert } from "@abhabongse/rehype-enhanced-alert/builder";
@@ -8,8 +7,9 @@ import { h } from "hastscript";
 import rehypeStringify from "rehype-stringify";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import { read } from "to-vfile";
 import { unified } from "unified";
+
+import { createMain } from "./shared-main.ts";
 
 function smallnoteAlertConfig(
   alertType: string,
@@ -33,20 +33,7 @@ export const mixedPluginsProcessor = unified()
   .use(rehypeEnhancedAlert())
   .use(rehypeStringify);
 
-async function main() {
-  const scriptName = path.basename(process.argv[1]);
-  const inputMarkdownFile = process.argv[2];
-  if (!inputMarkdownFile) {
-    console.error(`Usage: node ${scriptName} <markdown-file>`);
-    process.exit(1);
-  }
-
-  const htmlOutput = await mixedPluginsProcessor.process(
-    await read(inputMarkdownFile),
-  );
-
-  console.log(String(htmlOutput));
-}
+const main = createMain(mixedPluginsProcessor);
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   await main();
