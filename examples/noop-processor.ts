@@ -1,3 +1,4 @@
+import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import rehypeStringify from "rehype-stringify";
@@ -12,9 +13,10 @@ const defaultProcessor = unified()
   .use(rehypeStringify);
 
 async function main() {
+  const scriptName = path.basename(process.argv[1]);
   const inputMarkdownFile = process.argv[2];
   if (!inputMarkdownFile) {
-    console.error("Usage: node noop-processor.ts <markdown-file>");
+    console.error(`Usage: node ${scriptName} <markdown-file>`);
     process.exit(1);
   }
 

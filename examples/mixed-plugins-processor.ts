@@ -1,3 +1,4 @@
+import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { builder as rehypeEnhancedAlert } from "@abhabongse/rehype-enhanced-alert/builder";
@@ -33,9 +34,10 @@ export const mixedPluginsProcessor = unified()
   .use(rehypeStringify);
 
 async function main() {
+  const scriptName = path.basename(process.argv[1]);
   const inputMarkdownFile = process.argv[2];
   if (!inputMarkdownFile) {
-    console.error("Usage: node default-usage-processor.ts <markdown-file>");
+    console.error(`Usage: node ${scriptName} <markdown-file>`);
     process.exit(1);
   }
 
