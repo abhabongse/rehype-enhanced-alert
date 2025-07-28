@@ -104,10 +104,10 @@ you can achieve a desired outcome such as in this example below.
 
 ![Example Alert Boxes](examples/github.svg)
 
-> \[!NOTE]
-> This plugin provides a lot of flexibility.
-> Refer to the [Advanced Features](#advanced-features) section below
-> for more details.
+This plugin offers extensive customization options beyond the default setup.
+You can tailor its behavior and appearance to fit your needs.
+See the [Advanced Features](#advanced-features) section below
+to learn more.
 
 
 ## Installation
