@@ -14,8 +14,8 @@ It allows content authors to reuse the blockquote syntax
 to annotate alert boxes (a.k.a. callouts, admonitions, asides, info boxes).
 In the words of [GitHub Docs][github-docs:alert]:
 
-> Alerts are a Markdown extension based on the blockquote syntax
-> that you can use to emphasize critical information.
+> “Alerts are a Markdown extension based on the blockquote syntax
+> that you can use to emphasize critical information.”
 
 The plugin scans for blockquote elements in the HTML content
 and looks for a special marker `[!TYPE]` at the start of the first line.
@@ -98,14 +98,16 @@ the same Markdown content would be transformed into HTML like this:
 </aside>
 ```
 
-If you wish to achieve parity with the GitHub alert boxes (see example below),
-you will need to add some CSS styles to your project
-(e.g. mapping `alert-icon` class with [octicons][]).
+With [proper styling](./examples/github.css)
+(*not* provided out-of-the-box by this plugin),
+you can achieve a desired outcome such as in this example below.
 
-![Example Alert Boxes](examples/github-example.svg)
+![Example Alert Boxes](examples/github.svg)
 
-However, this plugin provides you with a lot of flexibility.
-Please refer to the [Advanced Features](#advanced-features) section below.
+> \[!NOTE]
+> This plugin provides a lot of flexibility.
+> Refer to the [Advanced Features](#advanced-features) section below
+> for more details.
 
 
 ## Installation
