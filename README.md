@@ -373,6 +373,18 @@ export const mixedPluginsProcessor = unified()
 
 Head over to the [JSR package documentation][jsr:package/api-reference] for the full API documentation.
 
+
+## Help, Support, and Contribute
+
+If you are a user of this package, I would like to hear from you!
+[Create a discussion thread][github:package/discussion]
+or send me a direct message if you have feedback or suggestions.
+
+
+## License
+
+[Apache-2.0](./LICENSE) © Abhabongse Janthong
+
 <!-- Definitions -->
 
 [docs:option/allowedTypes]: https://jsr.io/@abhabongse/rehype-enhanced-alert/doc/types/~/SimpleOptions#property_allowedtypes
@@ -384,6 +396,8 @@ Head over to the [JSR package documentation][jsr:package/api-reference] for the 
 [docs:options]: https://jsr.io/@abhabongse/rehype-enhanced-alert/doc/types/~/Options
 
 [esm.sh]: https://esm.sh/
+
+[github:package/discussion]: https://github.com/abhabongse/rehype-enhanced-alert/discussions
 
 [github-docs:alert]: https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts
 
