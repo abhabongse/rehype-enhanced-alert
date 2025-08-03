@@ -26,7 +26,7 @@ for (const scenario of scenarios) {
     const processor = processors[scenario.processor];
     const actualOutput = await processor.process(scenario.inputMarkdown);
     const expectedOutput = await roundtripHtmlProcessor.process(
-      scenario.expectedHtml.toString(),
+      scenario.expectedHtml,
     );
 
     assert.strictEqual(
