@@ -20,6 +20,10 @@ const processors: Record<string, any> = {
 };
 
 const scenarios = await getTestScenarios();
+if (scenarios.length === 0) {
+  console.warn("Cannot find test cases.");
+  process.exit(1);
+}
 
 for (const scenario of scenarios) {
   test(
