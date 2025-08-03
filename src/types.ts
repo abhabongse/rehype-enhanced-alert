@@ -91,7 +91,7 @@ export interface SimpleOptions {
  * In fact, you are encouraged to look at the source code to see how
  * a factory function creates a callback function out of {@linkcode SimpleOptions}.
  *
- * ### Function Parameters
+ * #### Function Parameters
  *
  * - `alertType`: Type of the alert that appeared between a pair of brackets,
  *   but transformed to lowercase. For example, the alert marker `[!HeLLo]`
@@ -103,7 +103,7 @@ export interface SimpleOptions {
  *   Avoid modifying this if the callback decides
  *   not to transform the blockquote element.
  *
- * ### Returns
+ * #### Returns
  *
  * Either a HAST node representing the complete alert block,
  * or the boolean value `false` to skip creating the alert block altogether.
