@@ -3,7 +3,7 @@ import { test } from "node:test";
 
 import { defaultUsageProcessor } from "../examples/default-usage-processor.ts";
 import { mixedPluginsProcessor } from "../examples/mixed-plugins-processor.ts";
-import { getScenarios } from "./utils/fixture.ts";
+import { getTestScenarios, type TestScenario } from "./utils/fixture.ts";
 import {
   allAlertTypesProcessor,
   customAlertTypesProcessor,
@@ -19,10 +19,17 @@ const processors: Record<string, any> = {
   "all-alert-types": allAlertTypesProcessor,
 };
 
-const scenarios = await getScenarios();
+const scenarios = await getTestScenarios();
 
 for (const scenario of scenarios) {
-  test(`should process "${scenario.name}" scenario with "${scenario.processor}" processor correctly`, async () => {
+  test(
+    `should process "${scenario.name}" scenario with "${scenario.processor}" processor correctly`,
+    buildTest(scenario),
+  );
+}
+
+function buildTest(scenario: TestScenario) {
+  return async () => {
     const processor = processors[scenario.processor];
     const actualOutput = await processor.process(scenario.inputMarkdown);
     const expectedOutput = await roundtripHtmlProcessor.process(
@@ -34,5 +41,5 @@ for (const scenario of scenarios) {
       String(expectedOutput),
       `Output for "${scenario.name}" scenario with "${scenario.processor}" processor does not match expected output.`,
     );
-  });
+  };
 }

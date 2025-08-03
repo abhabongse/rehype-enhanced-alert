@@ -9,10 +9,26 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const TEST_ROOT = path.join(__dirname, "..");
 const FIXTURES_BASE_PATH = path.join(TEST_ROOT, "fixtures");
 
-console.log(__dirname, TEST_ROOT, FIXTURES_BASE_PATH);
+type VFile = Awaited<ReturnType<typeof read>>;
 
-export async function getScenarios() {
-  const scenarios = [];
+/**
+ * Test scenario consisting of the following pair of files:
+ * - an input Markdown file at `test/fixtures/{name}/input.md`
+ * - an expected HTML file at `test/fixtures/{name}/{processor}.expected.md`
+ */
+export type TestScenario = {
+  name: string;
+  processor: string;
+  inputMarkdown: VFile;
+  expectedHtml: VFile;
+};
+
+/**
+ * Automatically gathers a list of {@linkcode TestScenario}
+ * located according to its test structure.
+ */
+export async function getTestScenarios(): Promise<TestScenario[]> {
+  const scenarios: TestScenario[] = [];
 
   const subdirs = await glob("*", { cwd: FIXTURES_BASE_PATH });
   for (const name of subdirs) {
