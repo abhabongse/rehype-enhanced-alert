@@ -31,14 +31,16 @@ for (const scenario of scenarios) {
 function buildTest(scenario: TestScenario) {
   return async () => {
     const processor = processors[scenario.processor];
-    const actualOutput = await processor.process(scenario.inputMarkdown);
-    const expectedOutput = await roundtripHtmlProcessor.process(
-      scenario.expectedHtml,
-    );
+    const actualOutput = processor
+      .processSync(scenario.inputMarkdown)
+      .toString();
+    const expectedOutput = roundtripHtmlProcessor
+      .processSync(scenario.expectedHtml)
+      .toString();
 
     assert.strictEqual(
-      String(actualOutput),
-      String(expectedOutput),
+      actualOutput,
+      expectedOutput,
       `Output for "${scenario.name}" scenario with "${scenario.processor}" processor does not match expected output.`,
     );
   };
